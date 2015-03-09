@@ -16,27 +16,38 @@ import javax.persistence.Id;
  * @author nikolai
  */
 @Entity
-public class InfoEntity implements Serializable {
+public class Hobby implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    private String email;
+    private String name;
+    private String description;
 
-    public InfoEntity() {
+    public Hobby() {
     }
 
-    public InfoEntity(String email) {
-        this.email = email;
+    public Hobby( String name, String description) {
+        
+        this.name = name;
+        this.description = description;
     }
-
     
-    public String getEmail() {
-        return email;
+
+    public String getName() {
+        return name;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
     
 
@@ -48,6 +59,6 @@ public class InfoEntity implements Serializable {
         this.id = id;
     }
 
-   
+ 
     
 }
