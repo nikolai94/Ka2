@@ -8,11 +8,27 @@ import java.util.List;
  *
  * @author petersodborgchristensen
  */
-public interface MyFacade {
-    public Person getPerson(int id);
-    public List<Person> getPersons();
-    public List<Person> getPersons(int zipCode);
-    public Company getCompany(int cvr);
+public class MyFacade {
+    
+    public MyFacade(){
+        
+    }
+    public Person getPerson(int id){
+        return null;
+        
+    }
+    public List<Person> getPersons(){
+        return null;
+        
+    }
+    public List<Person> getPersons(int zipCode){
+        return null;
+        
+    }
+    public Company getCompany(int cvr){
+        return null;
+        
+    }
     
     
 }
