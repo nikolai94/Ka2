@@ -17,20 +17,34 @@ public class MyFacade {
         emf = Persistence.createEntityManagerFactory("Ka2PU");
     }
     public Person getPerson(int id){
-        return null;
-        
+        em = emf.createEntityManager();
+        Person p = em.find(Person.class, id);
+        em.close();
+        return p; 
     }
+    
     public List<Person> getPersons(){
-        return null;
+        em = emf.createEntityManager();
+        String q = "select Persons from Person Persons ";
+
+        List<Person> list = em.createQuery(q).getResultList();
+        em.close();
+        return list;
         
     }
-    public List<Person> getPersons(int zipCode){
-        return null;
-        
+    public List<Person> getPersons(int zipCode){  
+        em = emf.createEntityManager();
+        String q = "SELECT Persons FROM Person WHERE name = :zipCode";
+
+        List<Person> list = em.createQuery(q).getResultList();
+        em.close();
+        return list;        
     }
     public Company getCompany(int cvr){
-        return null;
-        
+         em = emf.createEntityManager();
+        Company c = em.find(Company.class, cvr);
+        em.close();
+        return c;
     }
     
     
