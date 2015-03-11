@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 /**
@@ -25,7 +26,18 @@ public class InfoEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String email;
-
+    
+    @OneToMany(mappedBy = "infoEntity")
+    List <Phone> Phones = new  ArrayList();
+    
+    @ManyToOne
+    private Address address; 
+    
+    public Address getAddress()
+    {
+        return address;
+    }
+    
     public InfoEntity() {
     }
 
@@ -33,11 +45,22 @@ public class InfoEntity implements Serializable {
         this.email = email;
     }
     
-    @OneToMany(mappedBy = "infoEntity")
-    List <Phone> Phones = new  ArrayList();
+   
     
     public String getEmail() {
         return email;
+    }
+    public void addAddress(Address add){
+        address = add;
+    }
+    
+    public void addPhone(Phone p)
+    {
+        Phones.add(p);
+    }
+    
+    public List<Phone> getPhones(){
+        return Phones;
     }
 
     public void setEmail(String email) {

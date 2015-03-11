@@ -8,6 +8,7 @@ package entity;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,24 +21,32 @@ import javax.persistence.ManyToMany;
 @Entity
 public class Person extends InfoEntity implements Serializable {
     private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+
     private String firstName;
     private String lastName;
+  
+
     
-    @ManyToMany(mappedBy = "listPerson")
+    @ManyToMany(mappedBy = "listPerson",fetch=FetchType.EAGER)
     private List<Hobby> hobbys;
    
     
     public Person() {
     }
 
-    public Person(String firstName, String lastName) {
+    public Person(String email, String firstName, String lastName) {
+        super(email);
         this.firstName = firstName;
         this.lastName = lastName;
     }
-
+    
+    public void addHobby(Hobby hob)
+    {
+        hobbys.add(hob);
+    }
+    
+    
+    
     public String getFirstName() {
         return firstName;
     }
@@ -56,12 +65,9 @@ public class Person extends InfoEntity implements Serializable {
     
     
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
+     @Override
+    public String toString() {
+        return "Person{" + "id=" + getId() + ", firstName=" + firstName + ", lastName=" + lastName + ", hobbys=" + hobbys + '}';
     }
 
     
